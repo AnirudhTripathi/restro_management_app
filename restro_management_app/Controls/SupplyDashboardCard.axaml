@@ -1,0 +1,54 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:MarketProject.Controls"
+             mc:Ignorable="d" d:DesignWidth="370" d:DesignHeight="237"
+             x:Class="MarketProject.Controls.SupplyDashboardCard"
+             FontFamily="{StaticResource FilsonPro}"
+             CornerRadius="10"
+             Width="370"
+             Height="237">
+    <Grid>
+        <Border Classes="DashboardCardStyle">
+            <StackPanel>
+                <StackPanel Classes="CardTitle" Spacing="35">
+                    <TextBlock x:Name="DashboardCardTitle" Text="CHEGADA DE FORNECEDOR" />
+                    <Svg x:Name="DashboardCardIcon" Path="/Assets/Icons/SVG/IconSupply.svg" />
+                </StackPanel>
+                <StackPanel Classes="MainConent">
+                    <TextBlock Name="DashboardCardMainContent" Text="0 DIAS" FontSize="60" FontWeight="Heavy" />
+                    <Button Click="WhatsappButton_OnClick" Name="WhatsappButton">
+                        <Svg />
+                    </Button>
+                </StackPanel>
+                <Border />
+                <TextBlock Name="IsSupplyDefinied" IsVisible="False" Text="Não definido..." FontStyle="Italic"
+                           Opacity="0.5" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                <Button Name="MoreInfoAboutSupplyButton" Click="MoreInfoAboutSupplyButton_OnClick"
+                        Classes="ViewMoreInfosSupplyButton"
+                        Content="Ver mais informações do fornecedor" />
+            </StackPanel>
+        </Border>
+
+        <controls:AnimatedPopup x:Name="AddPopup"
+                                PlacementMode="Absolute"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="10"
+                                CloseAfter="0:0:0:4">
+            <controls:AnimatedPopup.Child>
+                <Border Background="#6EA759" Classes="PopUpLayout">
+                    <Grid RowDefinitions="Auto, Auto">
+                        <StackPanel>
+                            <Svg Path="/Assets/Icons/SVG/IconCheck.svg" />
+                            <Label Name="AddProdLabel" />
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Name="ContentAddTextBlock" />
+                    </Grid>
+                </Border>
+            </controls:AnimatedPopup.Child>
+        </controls:AnimatedPopup>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,29 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="370" d:DesignHeight="237"
+             x:DataType="vm:OptionsViewModel"
+             xmlns:vm="clr-namespace:MarketProject.ViewModels"
+             x:Class="MarketProject.Controls.RecentlyBackupDashboardCard"
+             FontFamily="{StaticResource FilsonPro}"
+             CornerRadius="10"
+             Width="370"
+             Height="237">
+    <UserControl.DataContext>
+        <vm:OptionsViewModel/>
+    </UserControl.DataContext>
+    <Border Classes="DashboardCardStyle">
+        <StackPanel>
+            <StackPanel Spacing="30" Classes="CardTitle">
+                <TextBlock Text="ÚLTIMO BACKUP REALIZADO" FontSize="18" />
+                <Svg Path="/Assets/Icons/SVG/IconSettings.svg" />
+            </StackPanel>
+            <StackPanel Classes="MainConent">
+                <TextBlock Name="DashboardCardMainContent" Text="0 DIAS" />
+            </StackPanel>
+            <Border />
+            <Button Name="BackupButton" Classes="DoBackupDashboardButton" Content="Realizar Novo Backup" Command="{Binding DoRangoBackup}"/>
+        </StackPanel>
+    </Border>
+</UserControl>

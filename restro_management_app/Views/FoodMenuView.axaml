@@ -1,0 +1,55 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="450" d:DesignHeight="1026"
+             x:Class="MarketProject.Views.FoodMenuView"
+             xmlns:vm="using:MarketProject.ViewModels"
+             xmlns:src="using:MarketProject.Controls"
+             FontFamily="{StaticResource FilsonPro}"
+             BorderBrush="#E8EEF7"
+             Background="#0B0E18"
+             x:DataType="vm:OrderHomeViewModel"
+             BorderThickness="2 0 0 0"
+             Width="450"
+             Height="1026">
+    <UserControl.DataContext>
+        <vm:OrderHomeViewModel />
+    </UserControl.DataContext>
+    <Grid RowDefinitions="Auto, Auto, Auto">
+        <StackPanel Classes="FoodMenuTopStyles">
+            <Panel Classes="SearchTextBox" VerticalAlignment="Center" Margin="-10">
+                <TextBox Watermark="Procure pelo Nome do prato..." Width="290" Name="SearchTextBox"
+                         TextChanged="SearchTextBox_OnTextChanged" />
+                <Image Source="{SvgImage /Assets/Icons/SVG/IconSearch.svg}" />
+            </Panel>
+            <Button Name="ExitButton" Classes="ExitButton">
+                <StackPanel Orientation="Horizontal">
+                    <Svg />
+                    <Label />
+                </StackPanel>
+            </Button>
+        </StackPanel>
+        <ComboBox Grid.Row="1" Name="TopicsComboBox" SelectedIndex="0" Classes="ChangeTable FoodMenuComboBoxStyle"
+                  SelectionChanged="TopicsComboBox_OnSelectionChanged">
+            <ComboBoxItem Content="Todos" />
+            <ComboBoxItem Content="Entrada" />
+            <ComboBoxItem Content="Principal" />
+            <ComboBoxItem Content="Kids" />
+            <ComboBoxItem Content="Vegano" />
+            <ComboBoxItem Content="Salada" />
+            <ComboBoxItem Content="Massa" />
+            <ComboBoxItem Content="Peixes" />
+            <ComboBoxItem Content="Carnes" />
+            <ComboBoxItem Content="Hambúrgueres" />
+            <ComboBoxItem Content="Sobremesas" />
+            <ComboBoxItem Content="Bebidas" />
+        </ComboBox>
+        <ScrollViewer Grid.Row="2" Classes="FoodMenuCardsStyles">
+            <StackPanel Name="FoodMenuCardsPanel" Classes="FoodStackPanel" />
+        </ScrollViewer>
+        <Canvas Grid.Row="2">
+            <Button Content="Adicionar Novo Prato" Classes="AddFoodButton" Click="AddFoodButton_OnClick" />
+        </Canvas>
+    </Grid>
+</UserControl>

@@ -1,0 +1,91 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="1581" d:DesignHeight="1026"
+             x:Class="MarketProject.Views.OrderHomeView"
+             xmlns:vm="clr-namespace:MarketProject.ViewModels"
+             xmlns:controls="clr-namespace:MarketProject.Controls"
+             x:DataType="vm:OrderHomeViewModel"
+             FontFamily="{StaticResource FilsonPro}"
+             Width="1581"
+             Height="1026">
+    <UserControl.DataContext>
+        <vm:OrderHomeViewModel />
+    </UserControl.DataContext>
+    <Panel>
+        <Grid Classes="OrderHomeStyles" RowDefinitions="Auto, Auto, Auto, Auto">
+            <Grid ColumnDefinitions="Auto, *">
+                <Panel Classes="SearchTextBox">
+                    <TextBox Watermark="Procure pelo ID do pedido ou N° da mesa..." Name="SearchTextBox"
+                             TextChanged="SearchTextBox_OnTextChanged" />
+                    <Image Source="{SvgImage /Assets/Icons/SVG/IconSearch.svg}" />
+                </Panel>
+                
+                <StackPanel Grid.Column="1" Classes="OrderHomeTop" Name="OrderHomeButtons">
+                    <Button Classes="AddOrder" Click="AddOrder_OnClick">
+                        <Svg />
+                    </Button>
+                    <Button Classes="DeleteOrder" Name="DeleteOrderButton" IsVisible="False" Click="DeleteOrderButton_OnClick">
+                        <Svg Width="36" Height="40"/>
+                    </Button>
+                    <Button Classes="ShowFood" Content="Ver Cardápio" Click="FoodMenuButton_OnClick"/>
+                </StackPanel>
+            </Grid>
+                <StackPanel Grid.Row="1" Margin="0 40">
+                    <Canvas>
+                        <StackPanel Classes="OrderHomeTitles">
+                            <Button Content="Todos" Name="AllOrdersButton" Click="AllOrders_OnClick" />
+                            <Button Content="Novos" Click="NewOrders_OnClick" />
+                            <Button Content="Preparando" Click="PreparingOrders_OnClick" />
+                            <Button Content="Fechados" Click="ClosedOrders_OnClick" />
+                        </StackPanel>
+                        <Border Classes="OrderDivider" Canvas.Top="38" />
+                    </Canvas>
+                </StackPanel>
+            <ScrollViewer MaxHeight="800" Grid.Row="2" VerticalScrollBarVisibility="Hidden">
+                <WrapPanel Classes="OrderCardsDisplay" Name="OrderCardsPanel"/>
+            </ScrollViewer>
+        </Grid>
+        <Panel HorizontalAlignment="Right" x:Name="FoodMenuViewPanel"/>
+        
+        <controls:AnimatedPopup x:Name="AddPopup"
+                                 PlacementMode="Absolute"
+                                 HorizontalAlignment="Right"
+                                 VerticalAlignment="Bottom"
+                                 Margin="10"
+                                 CloseAfter="0:0:0:4">
+            <controls:AnimatedPopup.Child>
+                <Border Background="#6EA759" Classes="PopUpLayout">
+                    <Grid RowDefinitions="Auto, Auto">
+                        <StackPanel>
+                            <Svg Path="/Assets/Icons/SVG/IconCheck.svg" />
+                            <Label Name="AddProdLabel" />
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Name="ContentAddTextBlock" />
+                    </Grid>
+                </Border>
+            </controls:AnimatedPopup.Child>
+        </controls:AnimatedPopup>
+        
+        <controls:AnimatedPopup x:Name="DeletePopup"
+                                PlacementMode="Absolute"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Bottom"
+                                Margin="10"
+                                CloseAfter="0:0:0:4">
+            <controls:AnimatedPopup.Child>
+                <Border Background="#D87249" Classes="PopUpLayout">
+                    <Grid RowDefinitions="Auto, Auto">
+                        <StackPanel>
+                            <Svg Path="/Assets/Icons/SVG/IconRemove.svg"/>
+                            <Label Name="DeleteProdLabel" />
+                        </StackPanel>
+                        <TextBlock Grid.Row="1" Name="ContentDeleteTextBlock" />
+                    </Grid>
+                </Border>
+            </controls:AnimatedPopup.Child>
+        </controls:AnimatedPopup>
+    </Panel>
+    
+</UserControl>
